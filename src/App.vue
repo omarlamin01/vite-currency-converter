@@ -1,7 +1,7 @@
 <template>
     <div :data-theme="currentTheme" id="app">
         <!-- Navbar -->
-        <div class="navbar bg-base-100 p-5 bg-primary">
+        <div class="navbar p-10 bg-base-100">
             <div class="navbar-start">
                 <!-- ... -->
             </div>
@@ -75,6 +75,18 @@
                 </div>
             </div>
         </div>
+
+        <main class="flex flex-column bg-base-300 justify-center h-auto p-10">
+            <div class="flex flex-column gap-5">
+                <div class="bg-primary p-5 rounded">primary</div>
+                <div class="bg-secondary p-5 rounded">secondary</div>
+                <div class="bg-accent p-5 rounded">accent</div>
+                <div class="bg-neutral p-5 rounded">neutral</div>
+                <div class="bg-base-100 p-5 rounded">base-100</div>
+                <div class="bg-base-200 p-5 rounded">base-200</div>
+                <div class="bg-base-300 p-5 rounded">base-300</div>
+            </div>
+        </main>
     </div>
 </template>
 
@@ -135,7 +147,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
-    height: 100vh;
 }
+
+/*main {*/
+/*    padding: 1rem;*/
+/*    margin: 0 auto;*/
+/*    height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 </style>
