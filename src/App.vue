@@ -80,9 +80,9 @@
         </div>
 
         <main class="flex flex-col items-center justify-center p-10">
-            <div class="flex flex-col gap-5 p-5" v-for="currency in activeCurrencies">
-                <div class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <div class="flex flex-row items-center justify-center bg-base-300 p-4 gap-5">
+            <div class="flex flex-col gap-5 p-5">
+                <div v-for="currency in activeCurrencies" class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
+                    <div class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
                                 <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_name }}</span>
@@ -96,10 +96,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center justify-center p-0">
+                    <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
+                    </div>
+                </div>
+                <div class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
+                    <div class="flex-start flex-none mr-2"></div>
+                    <div class="flex-center flex-1 mr-2">ADD</div>
+                    <div class="flex-end flex-none mr-2">
+                        <svg width="12px" height="12px"
+                             class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                            <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -144,7 +155,7 @@
                     'acid',
                     'lemonade',
                     'night',
-                    'coffe',
+                    'coffee',
                     'winter',
                 ],
                 allCurrencies: [],
