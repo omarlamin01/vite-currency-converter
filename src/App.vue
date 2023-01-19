@@ -79,8 +79,8 @@
             </div>
         </div>
 
-        <main class="flex justify-center p-10">
-            <div class="flex flex-col gap-5 p-5">
+        <main class="flex flex-col items-center justify-center p-10">
+            <div class="flex flex-col gap-5 p-5" v-for="currency in allCurrencies">
                 <div class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
                     <div class="flex flex-row items-center justify-center bg-base-300 p-4 gap-5">
                         <div class="mr-2 basis-1/5 grow-0">
@@ -88,8 +88,17 @@
                                 <img src="" alt="">
                             </div>
                         </div>
-                        <div class="font-bold text-4xl text-primary mr-2 basis-4/5 grow">
-                            USD
+                        <div class="mr-2 basis-4/5 grow">
+                            <div class="flex flex-row items-center">
+                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency[0] }}</span>
+                                <span class="flex-none">
+                                    <svg width="12px" height="12px"
+                                         class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                                        <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-center p-0">
@@ -111,7 +120,7 @@
         },
         data() {
             return {
-                currentTheme: 'light',
+                currentTheme: 'winter',
                 themes: [
                     'light',
                     'dark',
@@ -143,13 +152,34 @@
                     'coffe',
                     'winter',
                 ],
+                allCurrencies: [],
+                activeCurrencies: [],
+                api_key: 'd57569bf593ebb534d9227a5'
             }
         },
         methods: {
             changeTheme(theme) {
-                this.currentTheme = theme
-                document.documentElement.setAttribute('data-theme', theme)
+                this.currentTheme = theme;
+                document.documentElement.setAttribute('data-theme', theme);
+            },
+
+            getCurrencies() {
+                fetch('https://v6.exchangerate-api.com/v6/' + this.api_key + '/codes')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === 'success') {
+                            this.allCurrencies = data.supported_codes;
+                            $message.success('Currencies loaded successfully');
+                        } else {
+                            console.log(data['error-type']);
+                            $alert('Error', data['error-type'], 'error');
+                        }
+                    });
             }
+        },
+        mounted() {
+            this.getCurrencies();
+            document.documentElement.setAttribute('data-theme', this.currentTheme);
         }
     }
 </script>
