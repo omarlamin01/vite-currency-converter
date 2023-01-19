@@ -82,7 +82,7 @@
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
                 <div v-for="currency in activeCurrencies" class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <div class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
+                    <label for="my-modal-4" class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
                                 <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_name }}</span>
@@ -95,14 +95,14 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </label>
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
-                <div class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
+                <label for="my-modal-4" class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
                     <div class="flex-center flex-1 mr-2">ADD</div>
                     <div class="flex-end flex-none mr-2">
@@ -112,10 +112,17 @@
                             <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                         </svg>
                     </div>
-                </div>
+                </label>
             </div>
         </main>
     </div>
+    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+    <label for="my-modal-4" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+            <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
+            <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+        </label>
+    </label>
 </template>
 
 <script>
