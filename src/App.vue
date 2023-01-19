@@ -1,12 +1,15 @@
 <template>
-    <div :data-theme="currentTheme" id="app">
+    <div id="app"
+        :data-theme="currentTheme"
+        class="h-screen"
+    >
         <!-- Navbar -->
-        <div class="navbar p-10 bg-base-100">
+        <div class="navbar p-10 bg-base-300">
             <div class="navbar-start">
                 <!-- ... -->
             </div>
             <div class="navbar-center">
-                <a class="font-bold text-4xl">Currency converter</a>
+                <a class="font-bold text-4xl"><span class="text-primary">Currency</span> converter</a>
             </div>
             <div class="navbar-end">
                 <!-- Theme dropdown -->
@@ -76,15 +79,25 @@
             </div>
         </div>
 
-        <main class="flex flex-column bg-base-300 justify-center h-auto p-10">
-            <div class="flex flex-column gap-5">
-                <div class="bg-primary p-5 rounded">primary</div>
-                <div class="bg-secondary p-5 rounded">secondary</div>
-                <div class="bg-accent p-5 rounded">accent</div>
-                <div class="bg-neutral p-5 rounded">neutral</div>
-                <div class="bg-base-100 p-5 rounded">base-100</div>
-                <div class="bg-base-200 p-5 rounded">base-200</div>
-                <div class="bg-base-300 p-5 rounded">base-300</div>
+        <main class="flex justify-center p-10">
+            <div class="flex flex-col gap-5 p-5">
+                <div class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
+                    <div class="flex flex-row items-center justify-center bg-base-300 p-4 gap-5">
+                        <div class="mr-2 basis-1/5 grow-0">
+                            <div class="btn btn-circle btn-ghost">
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                        <div class="font-bold text-4xl text-primary mr-2 basis-4/5 grow">
+                            USD
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center p-0">
+                        <div>
+                            <input type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -148,14 +161,4 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
 }
-
-/*main {*/
-/*    padding: 1rem;*/
-/*    margin: 0 auto;*/
-/*    height: 100vh;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
 </style>
