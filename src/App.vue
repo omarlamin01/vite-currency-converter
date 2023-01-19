@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- About -->
-                <button class="btn btn-ghost btn-circle">
+                <button title="About" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -64,7 +64,7 @@
                 </button>
 
                 <!-- Github link -->
-                <div class="flex-none items-center">
+                <div title="Source code" class="flex-none items-center">
                     <a aria-label="Github" target="_blank"
                        href="https://github.com/omarlamin01/vite-currency-converter"
                        rel="noopener"
@@ -80,17 +80,12 @@
         </div>
 
         <main class="flex flex-col items-center justify-center p-10">
-            <div class="flex flex-col gap-5 p-5" v-for="currency in allCurrencies">
+            <div class="flex flex-col gap-5 p-5" v-for="currency in activeCurrencies">
                 <div class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
                     <div class="flex flex-row items-center justify-center bg-base-300 p-4 gap-5">
-                        <div class="mr-2 basis-1/5 grow-0">
-                            <div class="btn btn-circle btn-ghost">
-                                <img src="" alt="">
-                            </div>
-                        </div>
-                        <div class="mr-2 basis-4/5 grow">
+                        <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
-                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency[0] }}</span>
+                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_name }}</span>
                                 <span class="flex-none">
                                     <svg width="12px" height="12px"
                                          class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
@@ -154,7 +149,9 @@
                 ],
                 allCurrencies: [],
                 activeCurrencies: [],
-                api_key: 'd57569bf593ebb534d9227a5'
+                api_key: 'd57569bf593ebb534d9227a5',
+                base_code: 'USD',
+                rates: [],
             }
         },
         methods: {
@@ -175,11 +172,41 @@
                             $alert('Error', data['error-type'], 'error');
                         }
                     });
-            }
+            },
+
+            getRates() {
+                fetch('https://v6.exchangerate-api.com/v6/' + this.api_key + '/latest/' + this.base_code)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === 'success') {
+                            this.rates = data.conversion_rates;
+                            $message.success('Rates loaded successfully');
+                        } else {
+                            console.log(data['error-type']);
+                            $alert('Error', data['error-type'], 'error');
+                        }
+                    });
+            },
+
+            addActiveCurrency(currency) {
+                let currency_name = currency[0];
+                let currency_country = currency[1];
+                let currency_rate = this.rates[currency[0]];
+                let currency_obj = {
+                    currency_name: currency_name,
+                    currency_country: currency_country,
+                    currency_rate: currency_rate,
+                };
+                console.log(currency_obj);
+                this.activeCurrencies.push(currency_obj);
+            },
         },
         mounted() {
-            this.getCurrencies();
             document.documentElement.setAttribute('data-theme', this.currentTheme);
+            this.getCurrencies();
+            this.getRates();
+            this.addActiveCurrency(['USD', 'United States Dollar']);
+            this.addActiveCurrency(['EUR', 'Euro']);
         }
     }
 </script>
