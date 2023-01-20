@@ -81,7 +81,7 @@
 
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
-                <div v-for="currency in activeCurrencies" class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
+                <div v-for="(currency, index) in activeCurrencies" :key="index" class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
                     <label for="my-modal-4" class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
@@ -98,7 +98,7 @@
                     </label>
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
-                            <input type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
+                            <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
@@ -206,14 +206,30 @@
                     });
             },
 
+            exchangeCurrency(p_index) {
+                let current_value = this.activeCurrencies[p_index].currency_value / this.activeCurrencies[p_index].currency_rate;
+                this.activeCurrencies.forEach((currency, c_index) => {
+                    if (c_index != p_index) {
+                        currency.currency_value = current_value * currency.currency_rate;
+                    }
+                })
+            },
+
             addActiveCurrency(currency) {
                 let currency_name = currency[0];
                 let currency_country = currency[1];
                 let currency_rate = this.rates[currency[0]];
+                let currency_value = 0;
+
+                if (this.activeCurrencies.length > 1) {
+                    currency_value = this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency_rate;
+                }
+
                 let currency_obj = {
                     currency_name: currency_name,
                     currency_country: currency_country,
                     currency_rate: currency_rate,
+                    currency_value: currency_value
                 };
                 console.log(currency_obj);
                 this.activeCurrencies.push(currency_obj);
