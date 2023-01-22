@@ -83,8 +83,9 @@
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
                 <div v-for="(currency, index) in activeCurrencies" :key="index"
-                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <label for="my-modal-4"
+                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4"
+                     @click="this.focused_currency = index">
+                    <label for="my-modal-1"
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
@@ -139,6 +140,17 @@
             </div>
         </label>
     </label>
+
+    <input type="checkbox" id="my-modal-1" class="modal-toggle"/>
+    <label for="my-modal-1" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+            <div class="w-auto flex flex-col">
+                <label for="my-modal-1" class="btn btn-ghost w-auto grow"
+                       v-for="(currency, index) in allCurrencies"
+                       @click="replaceActiveCurrency(index)">{{ currency.currency_name }}</label>
+            </div>
+        </label>
+    </label>
 </template>
 
 <script>
@@ -187,6 +199,7 @@ export default {
             api_key: 'd57569bf593ebb534d9227a5',
             base_code: 'USD',
             rates: [],
+            focused_currency: 0,
         }
     },
     methods: {
@@ -272,7 +285,16 @@ export default {
         removeActiveCurrency(index) {
             this.allCurrencies.push(this.activeCurrencies[index]);
             this.activeCurrencies = this.activeCurrencies.filter((item, i) => i !== index);
-        }
+        },
+
+        replaceActiveCurrency(index) {
+            this.allCurrencies.push(this.activeCurrencies[this.focused_currency]);
+            this.activeCurrencies[this.focused_currency] = this.allCurrencies[index];
+            if (this.activeCurrencies.length > 1) {
+                this.activeCurrencies[this.focused_currency].currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * this.activeCurrencies[this.focused_currency].currency_rate).toFixed(2);
+            }
+            this.allCurrencies = this.allCurrencies.filter((item, i) => i !== index);
+        },
     },
     mounted() {
         this.getDefaultTheme();
