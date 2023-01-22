@@ -102,7 +102,7 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
-                                   class="input w-full focus:outline-none text-xl" placeholder="0.00">
+                                   class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
@@ -124,9 +124,11 @@
     <input type="checkbox" id="my-modal-4" class="modal-toggle"/>
     <label for="my-modal-4" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
-            <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-            <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for
-                free!</p>
+            <div class="w-auto flex flex-col">
+                <label for="my-modal-4" class="btn btn-ghost w-auto grow"
+                       @click="addActiveCurrency(currency)"
+                       v-for="currency in allCurrencies">{{ currency.currency_name }}</label>
+            </div>
         </label>
     </label>
 </template>
@@ -197,11 +199,17 @@ export default {
                                 BASE_CODE: this.base_code,
                                 RATES: res.conversion_rates,
                                 CURRENCIES: Object.keys(res.conversion_rates).map((key, index) => {
+                                    let name = data['supported_codes'][key];
+                                    data.supported_codes.forEach((item, index) => {
+                                        if (item[0] === key) {
+                                            name = item[1];
+                                        }
+                                    });
                                     return {
                                         currency_code: key,
-                                        currency_country: data.supported_codes[index],
+                                        currency_name: name,
                                         currency_rate: res.conversion_rates[key],
-                                        currency_value: (0).toFixed(2),
+                                        currency_value: 0.00,
                                     }
                                 })
                             };
@@ -229,24 +237,18 @@ export default {
         },
 
         addActiveCurrency(currency) {
-            let currency_name = currency[0];
-            let currency_country = currency[1];
-            let currency_rate = this.rates[currency[0]];
-            let currency_value = 0;
-
             if (this.activeCurrencies.length > 1) {
-                currency_value = this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency_rate;
+                currency.currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency.currency_rate).toFixed(2);
             }
-
-            let currency_obj = {
-                currency_name: currency_name,
-                currency_country: currency_country,
-                currency_rate: currency_rate,
-                currency_value: currency_value
-            };
-            console.log(currency_obj);
-            this.activeCurrencies.push(currency_obj);
+            this.activeCurrencies.push(currency);
+            this.allCurrencies.slice(this.allCurrencies.indexOf(currency), 1);
+            console.log(this.allCurrencies);
         },
+
+        removeActiveCurrency(index) {
+            this.allCurrencies.push(this.activeCurrencies[index]);
+            this.activeCurrencies.slice(index, 1);
+        }
     },
     mounted() {
         document.documentElement.setAttribute('data-theme', this.currentTheme);
