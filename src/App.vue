@@ -193,6 +193,14 @@ export default {
             const theme = localStorage.getItem('theme');
             if (theme) {
                 this.currentTheme = theme;
+            } else {
+                // get OS theme
+                const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                if (darkModeMediaQuery.matches) {
+                    this.currentTheme = 'dracula';
+                } else {
+                    this.currentTheme = 'winter';
+                }
             }
         },
 
