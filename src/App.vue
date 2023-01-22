@@ -250,13 +250,12 @@ export default {
                 currency.currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency.currency_rate).toFixed(2);
             }
             this.activeCurrencies.push(currency);
-            this.allCurrencies.slice(this.allCurrencies.indexOf(currency), 1);
-            console.log(this.allCurrencies);
+            this.allCurrencies = this.allCurrencies.filter(item => item.currency_code !== currency.currency_code);
         },
 
         removeActiveCurrency(index) {
             this.allCurrencies.push(this.activeCurrencies[index]);
-            this.activeCurrencies.slice(index, 1);
+            this.activeCurrencies = this.activeCurrencies.filter((item, i) => i !== index);
         }
     },
     mounted() {
