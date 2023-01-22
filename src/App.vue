@@ -121,6 +121,7 @@
             </div>
         </main>
     </div>
+
     <input type="checkbox" id="my-modal-4" class="modal-toggle"/>
     <label for="my-modal-4" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
@@ -185,6 +186,14 @@ export default {
         changeTheme(theme) {
             this.currentTheme = theme;
             document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        },
+
+        getDefaultTheme() {
+            const theme = localStorage.getItem('theme');
+            if (theme) {
+                this.currentTheme = theme;
+            }
         },
 
         updateData() {
@@ -251,6 +260,7 @@ export default {
         }
     },
     mounted() {
+        this.getDefaultTheme();
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         this.updateData();
         this.getData();
