@@ -1,7 +1,7 @@
 <template>
     <div id="app"
-        :data-theme="currentTheme"
-        class="h-screen"
+         :data-theme="currentTheme"
+         class="h-screen"
     >
         <!-- Navbar -->
         <div class="navbar p-10 bg-base-300">
@@ -21,7 +21,8 @@
                                   d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                         </svg>
                         <span class="hidden md:inline">Theme</span>
-                        <svg width="12px" height="12px" class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
+                        <svg width="12px" height="12px"
+                             class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
                             <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                         </svg>
@@ -81,11 +82,13 @@
 
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
-                <div v-for="(currency, index) in activeCurrencies" :key="index" class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <label for="my-modal-4" class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
+                <div v-for="(currency, index) in activeCurrencies" :key="index"
+                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
+                    <label for="my-modal-4"
+                           class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
-                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_name }}</span>
+                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_code }}</span>
                                 <span class="flex-none">
                                     <svg width="12px" height="12px"
                                          class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
@@ -98,11 +101,13 @@
                     </label>
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
-                            <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text" class="input w-full focus:outline-none text-xl" placeholder="0.00">
+                            <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
+                                   class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
-                <label for="my-modal-4" class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
+                <label for="my-modal-4"
+                       class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
                     <div class="flex-center flex-1 mr-2">ADD</div>
                     <div class="flex-end flex-none mr-2">
@@ -116,133 +121,164 @@
             </div>
         </main>
     </div>
-    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+
+    <input type="checkbox" id="my-modal-4" class="modal-toggle"/>
     <label for="my-modal-4" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
-            <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-            <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+            <div class="w-auto flex flex-col">
+                <label for="my-modal-4" class="btn btn-ghost w-auto grow"
+                       @click="addActiveCurrency(currency)"
+                       v-for="currency in allCurrencies">{{ currency.currency_name }}</label>
+            </div>
         </label>
     </label>
 </template>
 
 <script>
-    export default {
-        name: "App",
-        components: {
-            // ...
+
+export default {
+    name: "App",
+    components: {
+        // ...
+    },
+    data() {
+        return {
+            currentTheme: 'winter',
+            themes: [
+                'light',
+                'dark',
+                'cupcake',
+                'bumblebee',
+                'emerald',
+                'corporate',
+                'synthwave',
+                'retro',
+                'cyberpunk',
+                'valentine',
+                'halloween',
+                'garden',
+                'forest',
+                'aqua',
+                'lofi',
+                'pastel',
+                'fantasy',
+                'wireframe',
+                'black',
+                'luxury',
+                'dracula',
+                'cmyk',
+                'autumn',
+                'business',
+                'acid',
+                'lemonade',
+                'night',
+                'coffee',
+                'winter',
+            ],
+            allCurrencies: [],
+            activeCurrencies: [],
+            api_key: 'd57569bf593ebb534d9227a5',
+            base_code: 'USD',
+            rates: [],
+        }
+    },
+    methods: {
+        changeTheme(theme) {
+            this.currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
         },
-        data() {
-            return {
-                currentTheme: 'winter',
-                themes: [
-                    'light',
-                    'dark',
-                    'cupcake',
-                    'bumblebee',
-                    'emerald',
-                    'corporate',
-                    'synthwave',
-                    'retro',
-                    'cyberpunk',
-                    'valentine',
-                    'halloween',
-                    'garden',
-                    'forest',
-                    'aqua',
-                    'lofi',
-                    'pastel',
-                    'fantasy',
-                    'wireframe',
-                    'black',
-                    'luxury',
-                    'dracula',
-                    'cmyk',
-                    'autumn',
-                    'business',
-                    'acid',
-                    'lemonade',
-                    'night',
-                    'coffee',
-                    'winter',
-                ],
-                allCurrencies: [],
-                activeCurrencies: [],
-                api_key: 'd57569bf593ebb534d9227a5',
-                base_code: 'USD',
-                rates: [],
+
+        getDefaultTheme() {
+            const theme = localStorage.getItem('theme');
+            if (theme) {
+                this.currentTheme = theme;
+            } else {
+                // get OS theme
+                const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                if (darkModeMediaQuery.matches) {
+                    this.currentTheme = 'dracula';
+                } else {
+                    this.currentTheme = 'winter';
+                }
             }
         },
-        methods: {
-            changeTheme(theme) {
-                this.currentTheme = theme;
-                document.documentElement.setAttribute('data-theme', theme);
-            },
 
-            getCurrencies() {
-                fetch('https://v6.exchangerate-api.com/v6/' + this.api_key + '/codes')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.result === 'success') {
-                            this.allCurrencies = data.supported_codes;
-                            $message.success('Currencies loaded successfully');
-                        } else {
-                            console.log(data['error-type']);
-                            $alert('Error', data['error-type'], 'error');
-                        }
-                    });
-            },
+        updateData() {
+            fetch(`https://v6.exchangerate-api.com/v6/${this.api_key}/latest/${this.base_code}`)
+                .then(res => res.json())
+                .then(res => {
+                    fetch(`https://v6.exchangerate-api.com/v6/${this.api_key}/codes`)
+                        .then(data => data.json())
+                        .then(data => {
+                            let obj = {
+                                LAST_UPDATE: res['time_last_update_utc'],
+                                BASE_CODE: this.base_code,
+                                RATES: res.conversion_rates,
+                                CURRENCIES: Object.keys(res.conversion_rates).map((key, index) => {
+                                    let name = data['supported_codes'][key];
+                                    data.supported_codes.forEach((item, index) => {
+                                        if (item[0] === key) {
+                                            name = item[1];
+                                        }
+                                    });
+                                    return {
+                                        currency_code: key,
+                                        currency_name: name,
+                                        currency_rate: res.conversion_rates[key],
+                                        currency_value: 0.00,
+                                    }
+                                })
+                            };
 
-            getRates() {
-                fetch('https://v6.exchangerate-api.com/v6/' + this.api_key + '/latest/' + this.base_code)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.result === 'success') {
-                            this.rates = data.conversion_rates;
-                            $message.success('Rates loaded successfully');
-                        } else {
-                            console.log(data['error-type']);
-                            $alert('Error', data['error-type'], 'error');
-                        }
-                    });
-            },
+                            let jsonContent = JSON.stringify(obj);
 
-            exchangeCurrency(p_index) {
-                let current_value = this.activeCurrencies[p_index].currency_value / this.activeCurrencies[p_index].currency_rate;
-                this.activeCurrencies.forEach((currency, c_index) => {
-                    if (c_index != p_index) {
-                        currency.currency_value = current_value * currency.currency_rate;
-                    }
+                            localStorage.setItem("data", jsonContent);
+                        })
                 })
-            },
-
-            addActiveCurrency(currency) {
-                let currency_name = currency[0];
-                let currency_country = currency[1];
-                let currency_rate = this.rates[currency[0]];
-                let currency_value = 0;
-
-                if (this.activeCurrencies.length > 1) {
-                    currency_value = this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency_rate;
-                }
-
-                let currency_obj = {
-                    currency_name: currency_name,
-                    currency_country: currency_country,
-                    currency_rate: currency_rate,
-                    currency_value: currency_value
-                };
-                console.log(currency_obj);
-                this.activeCurrencies.push(currency_obj);
-            },
         },
-        mounted() {
-            document.documentElement.setAttribute('data-theme', this.currentTheme);
-            this.getCurrencies();
-            this.getRates();
-            this.addActiveCurrency(['USD', 'United States Dollar']);
-            this.addActiveCurrency(['EUR', 'Euro']);
+
+        getData() {
+            localStorage.getItem('data') ? this.allCurrencies = JSON.parse(localStorage.getItem('data')).CURRENCIES : this.updateData();
+            this.addActiveCurrency(this.allCurrencies[0]);
+            this.addActiveCurrency(this.allCurrencies[0]);
+        },
+
+        exchangeCurrency(p_index) {
+            this.activeCurrencies[p_index].currency_value = parseFloat(this.activeCurrencies[p_index].currency_value).toFixed(2);
+            let current_value = this.activeCurrencies[p_index].currency_value / this.activeCurrencies[p_index].currency_rate;
+            this.activeCurrencies.forEach((currency, c_index) => {
+                if (c_index != p_index) {
+                    currency.currency_value = (current_value * currency.currency_rate).toFixed(2);
+                }
+            })
+        },
+
+        addActiveCurrency(currency) {
+            if (this.activeCurrencies.length > 1) {
+                currency.currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * currency.currency_rate).toFixed(2);
+            }
+            this.activeCurrencies.push(currency);
+            this.allCurrencies = this.allCurrencies.filter(item => item.currency_code !== currency.currency_code);
+        },
+
+        removeActiveCurrency(index) {
+            this.allCurrencies.push(this.activeCurrencies[index]);
+            this.activeCurrencies = this.activeCurrencies.filter((item, i) => i !== index);
+        }
+    },
+    mounted() {
+        this.getDefaultTheme();
+        document.documentElement.setAttribute('data-theme', this.currentTheme);
+        this.updateData();
+        this.getData();
+    },
+    filters: {
+        currency(value) {
+            return value.toFixed(2);
         }
     }
+}
 </script>
 
 <style scoped>
