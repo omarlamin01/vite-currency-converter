@@ -201,7 +201,7 @@ export default {
                                         currency_code: key,
                                         currency_country: data.supported_codes[index],
                                         currency_rate: res.conversion_rates[key],
-                                        currency_value: 0,
+                                        currency_value: (0).toFixed(2),
                                     }
                                 })
                             };
@@ -219,10 +219,11 @@ export default {
         },
 
         exchangeCurrency(p_index) {
+            this.activeCurrencies[p_index].currency_value = parseFloat(this.activeCurrencies[p_index].currency_value).toFixed(2);
             let current_value = this.activeCurrencies[p_index].currency_value / this.activeCurrencies[p_index].currency_rate;
             this.activeCurrencies.forEach((currency, c_index) => {
                 if (c_index != p_index) {
-                    currency.currency_value = current_value * currency.currency_rate;
+                    currency.currency_value = (current_value * currency.currency_rate).toFixed(2);
                 }
             })
         },
@@ -251,6 +252,11 @@ export default {
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         this.updateData();
         this.getData();
+    },
+    filters: {
+        currency(value) {
+            return value.toFixed(2);
+        }
     }
 }
 </script>
