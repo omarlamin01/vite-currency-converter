@@ -240,7 +240,8 @@ export default {
 
         getData() {
             localStorage.getItem('data') ? this.allCurrencies = JSON.parse(localStorage.getItem('data')).CURRENCIES : this.updateData();
-            this.activeCurrencies = this.allCurrencies.slice(0, 2);
+            this.addActiveCurrency(this.allCurrencies[0]);
+            this.addActiveCurrency(this.allCurrencies[0]);
         },
 
         exchangeCurrency(p_index) {
