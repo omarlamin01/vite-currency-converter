@@ -82,30 +82,42 @@
 
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
-                <div v-for="(currency, index) in activeCurrencies" :key="index"
-                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <label for="my-modal-4"
-                           class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
-                        <div class="mr-2 grow">
-                            <div class="flex flex-row items-center">
-                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_code }}</span>
-                                <span class="flex-none">
-                                    <svg width="12px" height="12px"
-                                         class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
-                                        <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
-                                    </svg>
-                                </span>
+                <draggable v-model="activeCurrencies" ghost-class="ghost" @end="onEnd">
+                    <transition-group type="transition" name="flip-list">
+                        <div v-for="(currency, index) in activeCurrencies"
+                             :key="index"
+                             :id="currency.currency_code"
+                             class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
+                            <label for="my-modal-4"
+                                   class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
+                                <div class="mr-2 grow">
+                                    <div class="flex flex-row items-center">
+                                        <span class="text-2xl font-bold">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </span>
+                                        <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_code }}</span>
+                                        <span class="flex-none">
+                                            <svg width="12px" height="12px"
+                                                 class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
+                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+                                                <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </label>
+                            <div class="flex items-center justify-center cursor-text p-0">
+                                <div>
+                                    <input v-model="currency.currency_value" @change="exchangeCurrency(index)"
+                                           type="text"
+                                           class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
+                                </div>
                             </div>
                         </div>
-                    </label>
-                    <div class="flex items-center justify-center cursor-text p-0">
-                        <div>
-                            <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
-                                   class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
-                        </div>
-                    </div>
-                </div>
+                    </transition-group>
+                </draggable>
                 <label for="my-modal-4"
                        class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
@@ -136,10 +148,12 @@
 
 <script>
 
+import draggable from 'vuedraggable';
+
 export default {
     name: "App",
     components: {
-        // ...
+        draggable,
     },
     data() {
         return {
@@ -180,6 +194,8 @@ export default {
             api_key: 'd57569bf593ebb534d9227a5',
             base_code: 'USD',
             rates: [],
+            oldIndex: '',
+            newIndex: '',
         }
     },
     methods: {
@@ -202,6 +218,12 @@ export default {
                     this.currentTheme = 'winter';
                 }
             }
+        },
+
+        onEnd(event) {
+            this.oldIndex = event.oldIndex;
+            this.newIndex = event.newIndex;
+            console.log(event);
         },
 
         updateData() {

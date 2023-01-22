@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "daisyui": "^2.47.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
