@@ -56,13 +56,14 @@
                 </div>
 
                 <!-- About -->
-                <button title="About" class="btn btn-ghost btn-circle">
+                <label for="about-modal"
+                       title="About" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
                     </svg>
-                </button>
+                </label>
 
                 <!-- Github link -->
                 <div title="Source code" class="flex-none items-center">
@@ -85,18 +86,21 @@
                 <div v-for="(currency, index) in activeCurrencies" :key="index"
                      class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4"
                      @click="this.focused_currency = index">
-                    <label for="my-modal-1"
+                    <label for="replace-curr-modal"
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
                                 <span class="btn btn-circle btn-ghost hover:btn-error"
                                       v-if="activeCurrencies.length > 1"
                                       @click.stop="removeActiveCurrency(index)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </span>
-                                <span class="flex-1 font-bold text-4xl text-primary" :title="currency.currency_name">{{ currency.currency_code }}</span>
+                                <span class="flex-1 font-bold text-4xl text-primary"
+                                      :title="currency.currency_name">{{ currency.currency_code }}</span>
                                 <span class="flex-none">
                                     <svg width="12px" height="12px"
                                          class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
@@ -114,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <label for="my-modal-4"
+                <label for="add-curr-modal"
                        class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
                     <div class="flex-center flex-1 mr-2">ADD</div>
@@ -130,24 +134,43 @@
         </main>
     </div>
 
-    <input type="checkbox" id="my-modal-4" class="modal-toggle"/>
-    <label for="my-modal-4" class="modal cursor-pointer">
+    <input type="checkbox" id="add-curr-modal" class="modal-toggle"/>
+    <label for="add-curr-modal" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
             <div class="w-auto flex flex-col">
-                <label for="my-modal-4" class="btn btn-ghost w-auto grow"
+                <label for="add-curr-modal" class="btn btn-ghost w-auto grow"
                        @click="addActiveCurrency(currency)"
                        v-for="currency in allCurrencies">{{ currency.currency_name }}</label>
             </div>
         </label>
     </label>
 
-    <input type="checkbox" id="my-modal-1" class="modal-toggle"/>
-    <label for="my-modal-1" class="modal cursor-pointer">
+    <input type="checkbox" id="replace-curr-modal" class="modal-toggle"/>
+    <label for="replace-curr-modal" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
             <div class="w-auto flex flex-col">
-                <label for="my-modal-1" class="btn btn-ghost w-auto grow"
+                <label for="replace-curr-modal" class="btn btn-ghost w-auto grow"
                        v-for="(currency, index) in allCurrencies"
                        @click="replaceActiveCurrency(index)">{{ currency.currency_name }}</label>
+            </div>
+        </label>
+    </label>
+
+    <input type="checkbox" id="about-modal" class="modal-toggle"/>
+    <label for="about-modal" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+            <div class="gap-5">
+                <h1 class="text-2xl font-bold">About currency converter</h1>
+                <p class="text-base mr-2 text-xl">
+                    Introducing our new currency conversion app built with Vue.js. This app makes it easy to convert
+                    between currencies using real-time exchange rates from a trusted <a href="https://www.exchangerate-api.com/" target="_blank" class="text-info">API</a>.
+                    The user interface is designed
+                    with <a href="https://tailwindcss.com/" target="_blank" class="text-info">TailwindCSS,</a> and <a href="https://daisyui.com/" target="_blank" class="text-info">DaisyUI</a>
+                    for a sleek and modern look. With this app, you can easily check the
+                    exchange rates for various currencies and make conversions on the go. Whether you're a traveler,
+                    business person, or just curious about currency exchange rates, this app is the perfect tool for
+                    you.
+                </p>
             </div>
         </label>
     </label>
