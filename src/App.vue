@@ -224,6 +224,18 @@ export default {
             }
         },
 
+        sortCurrencies() {
+            this.allCurrencies.sort((a, b) => {
+                if (a.currency_name < b.currency_name) {
+                    return -1;
+                }
+                if (a.currency_name > b.currency_name) {
+                    return 1;
+                }
+                return 0;
+            });
+        },
+
         updateData() {
             fetch(`https://v6.exchangerate-api.com/v6/${this.api_key}/latest/${this.base_code}`)
                 .then(res => res.json())
@@ -260,6 +272,7 @@ export default {
 
         getData() {
             localStorage.getItem('data') ? this.allCurrencies = JSON.parse(localStorage.getItem('data')).CURRENCIES : this.updateData();
+            this.sortCurrencies();
             this.addActiveCurrency(this.allCurrencies[0]);
             this.addActiveCurrency(this.allCurrencies[0]);
         },
@@ -280,11 +293,13 @@ export default {
             }
             this.activeCurrencies.push(currency);
             this.allCurrencies = this.allCurrencies.filter(item => item.currency_code !== currency.currency_code);
+            this.sortCurrencies();
         },
 
         removeActiveCurrency(index) {
             this.allCurrencies.push(this.activeCurrencies[index]);
             this.activeCurrencies = this.activeCurrencies.filter((item, i) => i !== index);
+            this.sortCurrencies();
         },
 
         replaceActiveCurrency(index) {
@@ -294,6 +309,7 @@ export default {
                 this.activeCurrencies[this.focused_currency].currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * this.activeCurrencies[this.focused_currency].currency_rate).toFixed(2);
             }
             this.allCurrencies = this.allCurrencies.filter((item, i) => i !== index);
+            this.sortCurrencies();
         },
     },
     mounted() {
