@@ -9,13 +9,17 @@ A simple currency conversion app built with Vue.js, using real-time exchange rat
 
 ## Demo
 
-coming soon 😉
+[Live Demo](https://vite-currency-converter.vercel.app/)
 
 ## Features
 
 - Convert between currencies using real-time exchange rates
 - Sleek and modern user interface designed with [TailwindCSS](https://tailwindcss.com/)
   and [DaisyUI](https://daisyui.com/)
+
+## Upcoming Features
+
+- Multi language support
 
 ## Tools
 
