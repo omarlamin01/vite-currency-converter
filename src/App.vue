@@ -83,12 +83,20 @@
         <main class="flex flex-col items-center justify-center p-10">
             <div class="flex flex-col gap-5 p-5">
                 <div v-for="(currency, index) in activeCurrencies" :key="index"
-                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4">
-                    <label for="my-modal-4"
+                     class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4"
+                     @click="this.focused_currency = index">
+                    <label for="my-modal-1"
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
-                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_code }}</span>
+                                <span class="btn btn-circle btn-ghost hover:btn-error"
+                                      v-if="activeCurrencies.length > 1"
+                                      @click.stop="removeActiveCurrency(index)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                                <span class="flex-1 font-bold text-4xl text-primary" :title="currency.currency_name">{{ currency.currency_code }}</span>
                                 <span class="flex-none">
                                     <svg width="12px" height="12px"
                                          class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
@@ -102,7 +110,7 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
-                                   class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
+                                   class="input w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
@@ -129,6 +137,17 @@
                 <label for="my-modal-4" class="btn btn-ghost w-auto grow"
                        @click="addActiveCurrency(currency)"
                        v-for="currency in allCurrencies">{{ currency.currency_name }}</label>
+            </div>
+        </label>
+    </label>
+
+    <input type="checkbox" id="my-modal-1" class="modal-toggle"/>
+    <label for="my-modal-1" class="modal cursor-pointer">
+        <label class="modal-box relative" for="">
+            <div class="w-auto flex flex-col">
+                <label for="my-modal-1" class="btn btn-ghost w-auto grow"
+                       v-for="(currency, index) in allCurrencies"
+                       @click="replaceActiveCurrency(index)">{{ currency.currency_name }}</label>
             </div>
         </label>
     </label>
@@ -180,6 +199,7 @@ export default {
             api_key: 'd57569bf593ebb534d9227a5',
             base_code: 'USD',
             rates: [],
+            focused_currency: 0,
         }
     },
     methods: {
@@ -202,6 +222,18 @@ export default {
                     this.currentTheme = 'winter';
                 }
             }
+        },
+
+        sortCurrencies() {
+            this.allCurrencies.sort((a, b) => {
+                if (a.currency_name < b.currency_name) {
+                    return -1;
+                }
+                if (a.currency_name > b.currency_name) {
+                    return 1;
+                }
+                return 0;
+            });
         },
 
         updateData() {
@@ -240,6 +272,7 @@ export default {
 
         getData() {
             localStorage.getItem('data') ? this.allCurrencies = JSON.parse(localStorage.getItem('data')).CURRENCIES : this.updateData();
+            this.sortCurrencies();
             this.addActiveCurrency(this.allCurrencies[0]);
             this.addActiveCurrency(this.allCurrencies[0]);
         },
@@ -260,12 +293,24 @@ export default {
             }
             this.activeCurrencies.push(currency);
             this.allCurrencies = this.allCurrencies.filter(item => item.currency_code !== currency.currency_code);
+            this.sortCurrencies();
         },
 
         removeActiveCurrency(index) {
             this.allCurrencies.push(this.activeCurrencies[index]);
             this.activeCurrencies = this.activeCurrencies.filter((item, i) => i !== index);
-        }
+            this.sortCurrencies();
+        },
+
+        replaceActiveCurrency(index) {
+            this.allCurrencies.push(this.activeCurrencies[this.focused_currency]);
+            this.activeCurrencies[this.focused_currency] = this.allCurrencies[index];
+            if (this.activeCurrencies.length > 1) {
+                this.activeCurrencies[this.focused_currency].currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * this.activeCurrencies[this.focused_currency].currency_rate).toFixed(2);
+            }
+            this.allCurrencies = this.allCurrencies.filter((item, i) => i !== index);
+            this.sortCurrencies();
+        },
     },
     mounted() {
         this.getDefaultTheme();
