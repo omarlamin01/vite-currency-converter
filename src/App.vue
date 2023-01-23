@@ -110,7 +110,7 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
-                                   class="input w-full focus:outline-none text-xl" placeholder="0.00">
+                                   class="input input-lg w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
