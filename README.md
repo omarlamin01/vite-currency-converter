@@ -1,7 +1,32 @@
-# Vue 3 + Vite
+# Currency Conversion App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple currency conversion app built with Vue.js, using real-time exchange rates from a trusted API.
 
-## Recommended IDE Setup
+## Features
+- Convert between currencies using real-time exchange rates
+- Sleek and modern user interface designed with [TailwindCSS](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com/)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Tools
+- [Vue.js](https://vuejs.org/) - JavaScript framework for building user interfaces
+- [ExchangeRate-API](https://www.exchangerate-api.com/) - API for currency exchange rates
+- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs
+- [DaisyUI](https://daisyui.com/) - A collection of UI components for Vue.js
+- [Flaticon](https://www.flaticon.com/) - Free vector icons
+
+## Installation
+```bash
+# clone the repository
+git clone https://github.com/omarlamin01/vite-currency-converter.git
+
+# install dependencies
+npm install
+
+# start the development server
+npm run serve
+```
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
