@@ -89,7 +89,7 @@
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
                             <div class="flex flex-row items-center">
-                                <span class="text-2xl font-bold"
+                                <span class="btn btn-circle btn-ghost hover:btn-error"
                                       v-if="activeCurrencies.length > 1"
                                       @click.stop="removeActiveCurrency(index)">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -110,7 +110,7 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
-                                   class="input w-full h-full focus:outline-none text-xl" placeholder="0.00">
+                                   class="input w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
