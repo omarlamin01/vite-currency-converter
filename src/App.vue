@@ -305,7 +305,7 @@ export default {
         replaceActiveCurrency(index) {
             this.allCurrencies.push(this.activeCurrencies[this.focused_currency]);
             this.activeCurrencies[this.focused_currency] = this.allCurrencies[index];
-            if (this.activeCurrencies.length > 1) {
+            if (this.activeCurrencies.length >= 1) {
                 this.activeCurrencies[this.focused_currency].currency_value = (this.activeCurrencies[0].currency_value / this.activeCurrencies[0].currency_rate * this.activeCurrencies[this.focused_currency].currency_rate).toFixed(2);
             }
             this.allCurrencies = this.allCurrencies.filter((item, i) => i !== index);
