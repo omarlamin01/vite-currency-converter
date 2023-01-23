@@ -96,7 +96,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </span>
-                                <span class="flex-1 font-bold text-4xl text-primary">{{ currency.currency_code }}</span>
+                                <span class="flex-1 font-bold text-4xl text-primary" :title="currency.currency_name">{{ currency.currency_code }}</span>
                                 <span class="flex-none">
                                     <svg width="12px" height="12px"
                                          class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
