@@ -1,0 +1,25 @@
+{
+  "strings": {
+    "en": {
+      "app_name": "Currency converter",
+      "app_name_p1": "Currency",
+      "app_name_p2": "converter",
+      "theme": "Theme",
+      "change_theme": "Change Theme",
+      "themes": {},
+      "about": "About",
+      "visit_my_github": "Visit my GitHub",
+      "add_btn": "ADD",
+      "about_header": "About currency converter",
+      "about_body": {
+        "p_one": "Introducing our new currency conversion app built with Vue.js. This app makes it easy to convert between currencies using real-time exchange rates from a trusted ",
+        "p_two": "API",
+        "p_three": "The user interface is designed with ",
+        "p_four": "TailwindCSS,",
+        "p_five": "and",
+        "p_six": "DaisyUI",
+        "p_seven": "for a sleek and modern look. With this app, you can easily check the exchange rates for various currencies and make conversions on the go. Whether you're a traveler, business person, or just curious about currency exchange rates, this app is the perfect tool for you."
+      }
+    }
+  }
+}
