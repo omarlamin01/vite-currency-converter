@@ -9,11 +9,11 @@
                 <!-- ... -->
             </div>
             <div class="navbar-center">
-                <a class="font-bold text-4xl"><span class="text-primary">Currency</span> converter</a>
+                <a class="font-bold text-4xl"><span class="text-primary">{{ $t('app_name_p1') }}</span> {{ $t('app_name_p2') }}</a>
             </div>
             <div class="navbar-end">
                 <!-- Theme dropdown -->
-                <div title="Change Theme" class="dropdown dropdown-end ">
+                <div title="Change Theme" class="dropdown dropdown-end">
                     <div tabindex="0" class="btn gap-1 normal-case btn-ghost">
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
@@ -66,9 +66,9 @@
                 </label>
 
                 <!-- Github link -->
-                <div title="Source code" class="flex-none items-center">
+                <div title="Visit my GitHub" class="flex-none items-center">
                     <a aria-label="Github" target="_blank"
-                       href="https://github.com/omarlamin01/vite-currency-converter"
+                       href="https://github.com/omarlamin01/"
                        rel="noopener"
                        class="btn btn-ghost btn-circle normal-case">
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
