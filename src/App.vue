@@ -118,9 +118,11 @@
                      class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4"
                      @click="this.focused_currency = index">
                     <label for="replace-curr-modal"
+                           :class="{'order-last' : languages[locale].rtl}"
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
-                            <div class="flex flex-row items-center">
+                            <div :class="{'flex-row-reverse' : languages[locale].rtl}"
+                                class="flex flex-row items-center">
                                 <span class="btn btn-circle btn-ghost hover:btn-error"
                                       v-if="activeCurrencies.length > 1"
                                       @click.stop="removeActiveCurrency(index)">
@@ -145,11 +147,13 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
+                                   :class="{'text-right' : languages[locale].rtl}"
                                    class="input input-lg w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
                 <label for="add-curr-modal"
+                       :class="{'flex flex-row-reverse' : languages[locale].rtl}"
                        class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
                     <div class="flex-center flex-1 mr-2">{{ $t('add_btn') }}</div>
