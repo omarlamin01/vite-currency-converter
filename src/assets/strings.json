@@ -645,52 +645,62 @@
         "en": {
             "name": "English",
             "code": "en",
-            "flag": "🇺🇸"
+            "flag": "🇺🇸",
+            "rtl": false
         },
         "zh": {
             "name": "中文",
             "code": "zh",
-            "flag": "🇨🇳"
+            "flag": "🇨🇳",
+            "rtl": false
         },
         "es": {
             "name": "Español",
             "code": "es",
-            "flag": "🇪🇸"
+            "flag": "🇪🇸",
+            "rtl": false
         },
         "ar": {
             "name": "العربية",
             "code": "ar",
-            "flag": "🇸🇦"
+            "flag": "🇸🇦",
+            "rtl": true
         },
         "id": {
             "name": "Bahasa Indonesia",
             "code": "id",
-            "flag": "🇮🇩"
+            "flag": "🇮🇩",
+            "rtl": false
         },
         "pt": {
             "name": "Português",
             "code": "pt",
-            "flag": "🇵🇹"
+            "flag": "🇵🇹",
+            "rtl": false
         },
         "fr": {
             "name": "Français",
             "code": "fr",
-            "flag": "🇫🇷"
+            "flag": "🇫🇷",
+            "rtl": false
         },
         "ja": {
             "name": "日本語",
             "code": "ja",
-            "flag": "🇯🇵"
+            "flag": "🇯🇵",
+            "rtl": false
         },
         "ru": {
             "name": "Русский",
             "code": "ru",
-            "flag": "🇷🇺"
+            "flag": "🇷🇺",
+            "rtl": false
         },
         "de": {
             "name": "Deutsch",
             "code": "de",
-            "flag": "🇩🇪"
+            "flag": "🇩🇪",
+            "rtl": false
         }
     }
 }
