@@ -1,0 +1,149 @@
+{
+  "en": {
+    "app_name": "Currency converter",
+    "app_name_p1": "Currency",
+    "app_name_p2": "converter",
+    "theme": "Theme",
+    "change_theme": "Change Theme",
+    "themes": {},
+    "about": "About",
+    "visit_my_github": "Visit my GitHub",
+    "add_btn": "ADD",
+    "about_header": "About currency converter",
+    "about_body": {
+      "p_one": "Introducing our new currency conversion app built with Vue.js. This app makes it easy to convert between currencies using real-time exchange rates from a trusted ",
+      "p_two": "API",
+      "p_three": "The user interface is designed with ",
+      "p_four": "TailwindCSS,",
+      "p_five": "and",
+      "p_six": "DaisyUI",
+      "p_seven": "for a sleek and modern look. With this app, you can easily check the exchange rates for various currencies and make conversions on the go. Whether you're a traveler, business person, or just curious about currency exchange rates, this app is the perfect tool for you."
+    }
+  },
+  "fr": {
+    "app_name": "Convertisseur de devises",
+    "app_name_p1": "Convertisseur",
+    "app_name_p2": "de devises",
+    "theme": "Thème",
+    "change_theme": "Changer de thème",
+    "themes": {},
+    "about": "À propos",
+    "visit_my_github": "Visitez mon GitHub",
+    "add_btn": "AJOUTER",
+    "about_header": "À propos du convertisseur de devises",
+    "about_body": {
+      "p_one": "Présentation de notre nouvelle application de conversion de devises construite avec Vue.js. Cette application facilite la conversion entre devises à l'aide des taux de change en temps réel d'une ",
+      "p_two": "API",
+      "p_three": "digne de confiance. L'interface utilisateur est conçue avec ",
+      "p_four": "TailwindCSS,",
+      "p_five": "et",
+      "p_six": "DaisyUI",
+      "p_seven": "pour un look épuré et moderne. Avec cette application, vous pouvez facilement vérifier les taux de change pour différentes devises et effectuer des conversions en déplacement. Que vous soyez un voyageur, un homme d'affaires ou simplement curieux des taux de change, cette application est l'outil idéal pour vous."
+    }
+  },
+  "ar": {
+    "app_name": "محول العملات",
+    "app_name_p1": "محول",
+    "app_name_p2": "العملات",
+    "theme": "الموضوع",
+    "change_theme": "تغيير الموضوع",
+    "themes": {},
+    "about": "حول",
+    "visit_my_github": "زيارة موقعي على GitHub",
+    "add_btn": "إضافة",
+    "about_header": "حول محول العملات",
+    "about_body": {
+      "p_one": "تقدم لكم تطبيقنا الجديد لتحويل العملات مبنيًا على Vue.js. يتيح لك هذا التطبيق تحويل العملات بسهولة باستخدام أسعار الصرف الفورية من ",
+      "p_two": "API",
+      "p_three": "موثوق بها. تم تصميم واجهة المستخدم بواسطة ",
+      "p_four": "TailwindCSS,",
+      "p_five": "و",
+      "p_six": "DaisyUI",
+      "p_seven": "لتصميم متقن وحديث. مع هذا التطبيق ، يمكنك بسهولة التحقق من أسعار الصرف لعملات مختلفة وإجراء التحويلات على الطريق. سواء كنت مسافرًا أو شخصًا أعمال أو مجرد مهتمًا بأسعار الصرف العملات ، فإن هذا التطبيق هو الأداة المثالية لك."
+    }
+  },
+  "es": {
+    "app_name": "Conversor de divisas",
+    "app_name_p1": "Conversor",
+    "app_name_p2": "de divisas",
+    "theme": "Tema",
+    "change_theme": "Cambiar tema",
+    "themes": {},
+    "about": "Acerca de",
+    "visit_my_github": "Visita mi GitHub",
+    "add_btn": "AGREGAR",
+    "about_header": "Acerca del conversor de divisas",
+    "about_body": {
+      "p_one": "Presentamos nuestra nueva aplicación de conversión de divisas construida con Vue.js. Esta aplicación facilita la conversión entre divisas utilizando los tipos de cambio en tiempo real de una ",
+      "p_two": "API",
+      "p_three": "de confianza. La interfaz de usuario está diseñada con ",
+      "p_four": "TailwindCSS,",
+      "p_five": "y",
+      "p_six": "DaisyUI",
+      "p_seven": "para un aspecto elegante y moderno. Con esta aplicación, puede verificar fácilmente las tasas de cambio para diferentes divisas y realizar conversiones en movimiento. Ya sea que sea un viajero, una persona de negocios o simplemente curioso por las tasas de cambio de divisas, esta aplicación es la herramienta perfecta para usted."
+    }
+  },
+  "de": {
+    "app_name": "Währungsumrechner",
+    "app_name_p1": "Währungsumrechner",
+    "app_name_p2": "",
+    "theme": "Thema",
+    "change_theme": "Thema ändern",
+    "themes": {},
+    "about": "Über",
+    "visit_my_github": "Besuche mein GitHub",
+    "add_btn": "HINZUFÜGEN",
+    "about_header": "Über den Währungsumrechner",
+    "about_body": {
+      "p_one": "Wir stellen unsere neue Währungsumrechner-App vor, die mit Vue.js erstellt wurde. Diese App erleichtert die Umrechnung zwischen Währungen mit Hilfe der aktuellen Wechselkurse von einer ",
+      "p_two": "API",
+      "p_three": "von Vertrauen. Das Benutzeroberfläche wurde mit ",
+      "p_four": "TailwindCSS,",
+      "p_five": "und",
+      "p_six": "DaisyUI",
+      "p_seven": "für ein elegantes und modernes Aussehen entworfen. Mit dieser App können Sie die Wechselkurse für verschiedene Währungen einfach überprüfen und bei der Bewegung umrechnen. Ob Sie ein Reisender, ein Geschäftsmann oder einfach nur neugierig auf die Wechselkurse sind, ist diese App das perfekte Werkzeug für Sie."
+    }
+  },
+  "ch": {
+    "app_name": "货币转换器",
+    "app_name_p1": "货币转换器",
+    "app_name_p2": "",
+    "theme": "主题",
+    "change_theme": "更改主题",
+    "themes": {},
+    "about": "关于",
+    "visit_my_github": "访问我的GitHub",
+    "add_btn": "添加",
+    "about_header": "关于货币转换器",
+    "about_body": {
+      "p_one": "我们推出了我们的新货币转换器应用程序，它是用Vue.js构建的。此应用程序可轻松转换货币，使用来自可信赖的",
+      "p_two": "API",
+      "p_three": "的实时汇率。用户界面使用",
+      "p_four": "TailwindCSS，",
+      "p_five": "和",
+      "p_six": "DaisyUI",
+      "p_seven": "设计，以获得优雅和现代的外观。使用此应用程序，您可以轻松检查不同货币的汇率，并在移动中进行转换。无论您是旅行者、商人还是对汇率感兴趣，这都是您的完美工具。"
+    }
+  },
+  "ja": {
+    "app_name": "通貨換算",
+    "app_name_p1": "通貨換算",
+    "app_name_p2": "",
+    "theme": "テーマ",
+    "change_theme": "テーマを変更する",
+    "themes": {},
+    "about": "約",
+    "visit_my_github": "私のGitHubを訪問する",
+    "add_btn": "追加",
+    "about_header": "通貨換算について",
+    "about_body": {
+      "p_one": "私たちは、Vue.jsで作成された新しい通貨換算アプリケーションを紹介します。このアプリケーションを使用すると、信頼できる",
+      "p_two": "API",
+      "p_three": "のリアルタイムレートを使用して通貨を簡単に変換できます。ユーザーインターフェイスは、",
+      "p_four": "TailwindCSS、",
+      "p_five": "と",
+      "p_six": "DaisyUI",
+      "p_seven": "を使用して、エレガントでモダンな外観を設計しています。このアプリケーションを使用すると、異なる通貨のレートを簡単に確認し、移動中に変換できます。旅行者、ビジネスマン、または単に通貨レートに興味がある場合は、このアプリケーションはあなたの完璧なツールです。"
+    }
+  }
+}
