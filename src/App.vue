@@ -79,7 +79,7 @@
                                 :title="lang.name"
                                 @click="updateLocale(lang.code)">
                                 <button :class="locale === lang.code ? 'flex active' : 'flex'"><img loading="lazy" width="20" height="20" :alt="$t(`languages.${lang.code}`)"
-                                                                 src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1ec-1f1e7.svg">
+                                                                 :src="lang.flag">
                                     <span class="flex flex-1 justify-between">{{ $t(`languages.${lang.code}`) }} </span></button>
                             </li>
                         </ul>
@@ -294,8 +294,6 @@ export default {
 
         getLanguages() {
             this.languages = strings.languages;
-            console.log(this.languages);
-            console.log(this.languages[this.locale]);
         },
 
         sortCurrencies() {
