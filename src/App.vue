@@ -4,18 +4,19 @@
          class="h-screen"
     >
         <!-- Navbar -->
-        <div class="navbar p-10 bg-base-300">
-            <div class="navbar-start">
+        <div :class="{'flex-row-reverse' : languages[locale].rtl}"
+            class="flex flex-row p-10 bg-base-300">
+            <div class="basis-1/4">
                 <!-- ... -->
             </div>
-            <div class="navbar-center">
+            <div class="navbar-center basis-1/2">
                 <a class="font-bold text-4xl"><span class="text-primary">{{ $t("app_name_p1") }}</span>
                     {{ $t("app_name_p2") }}</a>
             </div>
-            <div class="navbar-end">
+            <div :class="languages[locale].rtl ? 'flex flex-row-reverse basis-1/4' : 'flex flex-row basis-1/4'">
                 <!-- Theme dropdown -->
-                <div :title="$t('change_theme')" class="dropdown dropdown-end">
-                    <div tabindex="0" class="btn gap-1 normal-case btn-ghost">
+                <div :title="$t('change_theme')" :class="languages[locale].rtl ? 'dropdown' : 'dropdown dropdown-end'">
+                    <div tabindex="0" :class="languages[locale].rtl ? 'flex flex-row-reverse btn gap-1 normal-case btn-ghost' : 'btn gap-1 normal-case btn-ghost'">
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -28,8 +29,7 @@
                             <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
                         </svg>
                     </div>
-                    <div
-                        class="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-52 overflow-y-auto shadow-2xl mt-16">
+                    <div class="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-52 overflow-y-auto shadow-2xl mt-16">
                         <div class="grid grid-cols-1 gap-3 p-3" tabindex="0">
                             <div v-for="theme in this.themes"
                                  class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
@@ -57,8 +57,8 @@
                 </div>
 
                 <!-- Language drop-down -->
-                <div :title="$t('change_language')" class="dropdown dropdown-end">
-                    <div tabindex="0" class="btn btn-ghost gap-1 normal-case">
+                <div :title="$t('change_language')" :class="languages[locale].rtl ? 'dropdown' : 'dropdown dropdown-end'">
+                    <div tabindex="0" :class="languages[locale].rtl ? 'flex flex-row-reverse btn btn-ghost gap-1 normal-case' : 'btn btn-ghost gap-1 normal-case'">
                         <svg class="inline-block h-4 w-4 fill-current md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 512 512">
                             <path
@@ -79,7 +79,7 @@
                                 :title="lang.name"
                                 @click="updateLocale(lang.code)">
                                 <button :class="locale === lang.code ? 'flex active' : 'flex'"><img loading="lazy" width="20" height="20" :alt="$t(`languages.${lang.code}`)"
-                                                                 src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1ec-1f1e7.svg">
+                                                                 :src="lang.flag">
                                     <span class="flex flex-1 justify-between">{{ $t(`languages.${lang.code}`) }} </span></button>
                             </li>
                         </ul>
@@ -97,11 +97,11 @@
                 </label>
 
                 <!-- Github link -->
-                <div :title="$t('visit_my_github')" class="flex-none items-center">
+                <div :title="$t('visit_my_github')" class="btn btn-ghost btn-circle">
                     <a aria-label="Github" target="_blank"
                        href="https://github.com/omarlamin01/"
                        rel="noopener"
-                       class="btn btn-ghost btn-circle normal-case">
+                       class="normal-case">
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                              class="inline-block h-5 w-5 fill-current md:h-6 md:w-6">
                             <path
@@ -118,9 +118,11 @@
                      class="grid grid-cols-2 rounded rounded-4 outline outline-neutral focus:outline focus:outline-2 focus:outline-offset-4"
                      @click="this.focused_currency = index">
                     <label for="replace-curr-modal"
+                           :class="{'order-last' : languages[locale].rtl}"
                            class="flex flex-row items-center justify-center cursor-pointer bg-base-300 p-4 gap-5">
                         <div class="mr-2 grow">
-                            <div class="flex flex-row items-center">
+                            <div :class="{'flex-row-reverse' : languages[locale].rtl}"
+                                class="flex flex-row items-center">
                                 <span class="btn btn-circle btn-ghost hover:btn-error"
                                       v-if="activeCurrencies.length > 1"
                                       @click.stop="removeActiveCurrency(index)">
@@ -145,11 +147,13 @@
                     <div class="flex items-center justify-center cursor-text p-0">
                         <div>
                             <input v-model="currency.currency_value" @change="exchangeCurrency(index)" type="text"
+                                   :class="{'text-right' : languages[locale].rtl}"
                                    class="input input-lg w-full focus:outline-none text-xl" placeholder="0.00">
                         </div>
                     </div>
                 </div>
                 <label for="add-curr-modal"
+                       :class="{'flex flex-row-reverse' : languages[locale].rtl}"
                        class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
                     <div class="flex-center flex-1 mr-2">{{ $t('add_btn') }}</div>
@@ -384,7 +388,7 @@ export default {
             this.sortCurrencies();
         },
     },
-    mounted() {
+    created() {
         this.getDefaultTheme();
         document.documentElement.setAttribute('data-theme', this.currentTheme);
         this.getLocale();
