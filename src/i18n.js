@@ -4,10 +4,7 @@ import { createApp } from 'vue';
 
 const i18n = createI18n({
     locale: sessionStorage.getItem('locale') || 'en',
-    messages: {
-        en: strings.en,
-        fr: strings.fr
-    }
+    messages: strings
 });
 
 export default i18n;
