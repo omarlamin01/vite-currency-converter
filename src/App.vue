@@ -14,14 +14,14 @@
             </div>
             <div class="navbar-end">
                 <!-- Theme dropdown -->
-                <div title="Change Theme" class="dropdown dropdown-end">
+                <div :title="$t('change_theme')" class="dropdown dropdown-end">
                     <div tabindex="0" class="btn gap-1 normal-case btn-ghost">
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                         </svg>
-                        <span class="hidden md:inline">Theme</span>
+                        <span class="hidden md:inline">{{ $t("theme") }}</span>
                         <svg width="12px" height="12px"
                              class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
@@ -34,14 +34,14 @@
                             <div v-for="theme in this.themes"
                                  class="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2"
                                  :class="{'outline': theme === this.currentTheme}"
-                                 :title="theme"
+                                 :title="$t(`themes.${theme}`)"
                                  :data-set-theme="theme" data-act-class="outline">
                                 <div :data-theme="theme"
                                      @click="changeTheme(theme)"
                                      class="bg-base-100 text-base-content w-full cursor-pointer font-sans">
                                     <div class="grid grid-cols-5 grid-rows-3">
                                         <div class="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4">
-                                            <div class="flex-grow text-sm font-bold">{{ theme }}</div>
+                                            <div class="flex-grow text-sm font-bold">{{ $t(`themes.${theme}`) }}</div>
                                             <div class="flex flex-shrink-0 flex-wrap gap-1">
                                                 <div class="bg-primary w-2 rounded"></div>
                                                 <div class="bg-secondary w-2 rounded"></div>
@@ -57,7 +57,7 @@
                 </div>
 
                 <!-- Language drop-down -->
-                <div title="Change Language" class="dropdown dropdown-end">
+                <div :title="$t('change_language')" class="dropdown dropdown-end">
                     <div tabindex="0" class="btn btn-ghost gap-1 normal-case">
                         <svg class="inline-block h-4 w-4 fill-current md:h-5 md:w-5" xmlns="http://www.w3.org/2000/svg"
                              width="20" height="20" viewBox="0 0 512 512">
@@ -75,8 +75,10 @@
                     <div
                         class="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px mt-16 w-56 overflow-y-auto shadow-2xl">
                         <ul class="menu menu-compact gap-1 p-3" tabindex="0">
-                            <li v-for="lang in languages" @click="updateLocale(lang.code)">
-                                <button :class="locale === lang.code? 'flex active' : 'flex'"><img loading="lazy" width="20" height="20" :alt="$t(`languages.${lang.code}`)"
+                            <li v-for="lang in languages"
+                                :title="lang.name"
+                                @click="updateLocale(lang.code)">
+                                <button :class="locale === lang.code ? 'flex active' : 'flex'"><img loading="lazy" width="20" height="20" :alt="$t(`languages.${lang.code}`)"
                                                                  src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.0/svg/1f1ec-1f1e7.svg">
                                     <span class="flex flex-1 justify-between">{{ $t(`languages.${lang.code}`) }} </span></button>
                             </li>
@@ -86,7 +88,7 @@
 
                 <!-- About -->
                 <label for="about-modal"
-                       title="About" class="btn btn-ghost btn-circle">
+                       :title="$t('about')" class="btn btn-ghost btn-circle">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -95,7 +97,7 @@
                 </label>
 
                 <!-- Github link -->
-                <div title="Visit my GitHub" class="flex-none items-center">
+                <div :title="$t('visit_my_github')" class="flex-none items-center">
                     <a aria-label="Github" target="_blank"
                        href="https://github.com/omarlamin01/"
                        rel="noopener"
@@ -150,7 +152,7 @@
                 <label for="add-curr-modal"
                        class="btn btn-square btn-primary grow w-auto h-fit p-4 flex flex-row items-center justify-center text-xl">
                     <div class="flex-start flex-none mr-2"></div>
-                    <div class="flex-center flex-1 mr-2">ADD</div>
+                    <div class="flex-center flex-1 mr-2">{{ $t('add_btn') }}</div>
                     <div class="flex-end flex-none mr-2">
                         <svg width="12px" height="12px"
                              class="ml-1 hidden h-3 w-3 fill-current opacity-60 sm:inline-block"
@@ -189,18 +191,15 @@
     <label for="about-modal" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
             <div class="gap-5">
-                <h1 class="text-2xl font-bold">About currency converter</h1>
-                <p class="text-base mr-2 text-xl">
-                    Introducing our new currency conversion app built with Vue.js. This app makes it easy to convert
-                    between currencies using real-time exchange rates from a trusted <a
-                    href="https://www.exchangerate-api.com/" target="_blank" class="text-info">API</a>.
-                    The user interface is designed
-                    with <a href="https://tailwindcss.com/" target="_blank" class="text-info">TailwindCSS,</a> and <a
-                    href="https://daisyui.com/" target="_blank" class="text-info">DaisyUI</a>
-                    for a sleek and modern look. With this app, you can easily check the
-                    exchange rates for various currencies and make conversions on the go. Whether you're a traveler,
-                    business person, or just curious about currency exchange rates, this app is the perfect tool for
-                    you.
+                <h1 class="text-2xl font-bold">{{ $t('about_header') }}</h1>
+                <p class="text-base mr-5 text-xl">
+                    {{ $t('about_body.p_one') }}
+                    <a href="https://www.exchangerate-api.com/" target="_blank" class="text-info">{{ $t('about_body.p_two') }}</a>.
+                    {{ $t('about_body.p_three') }}
+                    <a href="https://tailwindcss.com/" target="_blank" class="text-info">{{ $t('about_body.p_four') }}</a>
+                    {{ $t('about_body.p_five') }}
+                    <a href="https://daisyui.com/" target="_blank" class="text-info">{{ $t('about_body.p_six') }}</a>
+                    {{ $t('about_body.p_seven') }}
                 </p>
             </div>
         </label>
