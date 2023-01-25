@@ -9,7 +9,7 @@
                 <!-- ... -->
             </div>
             <div class="navbar-center">
-                <a class="font-bold text-4xl"><span class="text-primary">{{ $t('app_name_p1') }}</span> {{ $t('app_name_p2') }}</a>
+                <a class="font-bold text-4xl"><span class="text-primary">{{ $t("app_name_p1") }}</span> {{ $t("app_name_p2") }}</a>
             </div>
             <div class="navbar-end">
                 <!-- Theme dropdown -->
@@ -177,6 +177,9 @@
 </template>
 
 <script>
+
+import strings from "./assets/strings.json";
+import i18n from "./main.js";
 
 export default {
     name: "App",

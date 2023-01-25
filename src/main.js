@@ -12,3 +12,5 @@ const i18n = createI18n({
 createApp(App).mount('#app')
 
 App.use(i18n);
+
+export default i18n;
