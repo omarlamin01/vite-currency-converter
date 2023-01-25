@@ -1,16 +1,7 @@
-import { createApp } from 'vue'
-import { createI18n } from 'vue-i18n'
+import { createApp } from "vue";
 import './style.css'
 import App from './App.vue'
-import strings from './assets/strings.json';
 
-const i18n = createI18n({
-    locale: 'en',
-    messages: strings
-})
+import i18n from "./i18n.js";
 
-createApp(App).mount('#app')
-
-App.use(i18n);
-
-export default i18n;
+createApp(App).use(i18n).mount('#app');

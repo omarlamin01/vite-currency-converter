@@ -178,9 +178,6 @@
 
 <script>
 
-import strings from "./assets/strings.json";
-import i18n from "./main.js";
-
 export default {
     name: "App",
     components: {
