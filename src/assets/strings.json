@@ -137,7 +137,7 @@
             "themes": {
                 "light": "Luz",
                 "dark": "Oscuro",
-                "cupcake": "Pastel",
+                "cupcake": "Magdalena",
                 "bumblebee": "Abeja",
                 "emerald": "Esmeralda",
                 "corporate": "Corporativo",
@@ -153,7 +153,7 @@
                 "pastel": "Pastel",
                 "fantasy": "Fantasía",
                 "wireframe": "Wireframe",
-                "black": ""
+                "black": "negro",
             },
             "change_language": "Cambiar idioma",
             "languages": {
