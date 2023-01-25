@@ -32,7 +32,7 @@ A simple currency conversion app built with Vue.js, using real-time exchange rat
 - Japanese
 - Russian
 - German
-These languages are the most used languages on the internet according to [Statista](https://www.statista.com/statistics/262946/share-of-the-most-common-languages-on-the-internet/#:~:text=As%20of%20January%202020%2C%20English%20was%20the%20most,was%20ranked%20second%20with%20a%2019.4%20percent%20share)
+- These languages are the most used languages on the internet according to [Statista](https://www.statista.com/statistics/262946/share-of-the-most-common-languages-on-the-internet/#:~:text=As%20of%20January%202020%2C%20English%20was%20the%20most,was%20ranked%20second%20with%20a%2019.4%20percent%20share)
 
 ## Tools
 
