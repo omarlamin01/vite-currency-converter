@@ -3,8 +3,8 @@ import { createI18n } from 'vue-i18n';
 import { createApp } from 'vue';
 
 const i18n = createI18n({
-    locale: sessionStorage.getItem('locale') || 'en',
-    messages: strings
+    locale: localStorage.getItem('locale') || 'en',
+    messages: strings.strings
 });
 
 export default i18n;
